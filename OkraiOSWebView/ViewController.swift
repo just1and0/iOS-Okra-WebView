@@ -4,7 +4,6 @@
 //
 //  Created by Oluwatobi Shokunbi on 19/11/2021.
 //
-
 import UIKit
 import WebKit;
 
@@ -41,7 +40,6 @@ class ViewController: UIViewController {
             <script src="https://cdn.okra.ng/v2/bundle.js"></script>
             <script type="text/javascript">
               window.onload = buildWithShortUrl;
-
               function buildWithShortUrl() {
                 Okra.buildWithShortUrl({
                   short_url: 'uOxqP-u9n',
@@ -63,7 +61,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.addSubview(webview) 
+        webview.loadHTMLString(html_content, baseURL: nil)
+        view.addSubview(webview)
     }
     
     override func viewDidLayoutSubviews(){
