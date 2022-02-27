@@ -12,7 +12,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let config = WKWebViewConfiguration()
         let userContentController = WKUserContentController()
         let prefs = WKWebpagePreferences()
@@ -64,7 +63,7 @@ class ViewController: UIViewController {
                      window.webkit.messageHandlers.test.postMessage({status:'success', response:data})
                       },
                       onClose: function () {
-                       window.webkit.messageHandlers.test.postMessage({status:'close'})
+                                        window.webkit.messageHandlers.test.postMessage({status:'close', response:null})
                       },
                     });
                   }
@@ -81,10 +80,28 @@ extension ViewController: WKScriptMessageHandler {
     // will be parsed as a 0 for false and 1 for true in the message's body. See WebKit documentation:
     // https://developer.apple.com/documentation/webkit/wkscriptmessage/1417901-body.
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        if let messageBody = message.body as? String {
-            print(messageBody)
-        }
+         print(">>>>>>>>>testing", message.body )
+//        if let data = message.body as? [String : String],
+//
+//             let response = data["response"], let status = data["status"] {
+//            print(response)
+//            print(status)
+//            print(">>>>>>>>>uytrerrtyuiytr")
+//          showUser(status: status, response: response)
+//         }
     }
 
+    private func showUser(status: String, response: String) {
+          let userDescription = "\(status) \(response)"
+          let alertController = UIAlertController(
+             title: "User",
+             message: userDescription,
+             preferredStyle: .alert
+          )
+          alertController.addAction(
+              UIAlertAction(title: "OK", style: .default)
+          )
+          present(alertController, animated: true)
+      }
 
 }
