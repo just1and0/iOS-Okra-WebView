@@ -65,6 +65,9 @@ class ViewController: UIViewController {
                       onClose: function () {
                                         window.webkit.messageHandlers.test.postMessage({status:'close', response:null})
                       },
+                      onEvent: function(data){
+                                                window.webkit.messageHandlers.test.postMessage({status:'onEvent', response:data})
+                        }
                     });
                   }
                 </script>
@@ -81,6 +84,7 @@ extension ViewController: WKScriptMessageHandler {
     // https://developer.apple.com/documentation/webkit/wkscriptmessage/1417901-body.
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
          print(">>>>>>>>>testing", message.body )
+//        showUser(status: message.body)
 //        if let data = message.body as? [String : String],
 //
 //             let response = data["response"], let status = data["status"] {
@@ -90,18 +94,5 @@ extension ViewController: WKScriptMessageHandler {
 //          showUser(status: status, response: response)
 //         }
     }
-
-    private func showUser(status: String, response: String) {
-          let userDescription = "\(status) \(response)"
-          let alertController = UIAlertController(
-             title: "User",
-             message: userDescription,
-             preferredStyle: .alert
-          )
-          alertController.addAction(
-              UIAlertAction(title: "OK", style: .default)
-          )
-          present(alertController, animated: true)
-      }
 
 }
