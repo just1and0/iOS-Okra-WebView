@@ -44,7 +44,7 @@ class OkraWebViewConfig: UIViewController {
 
               function buildWithShortUrl() {
                 Okra.buildWithShortUrl({
-                  short_url: 'uOxqP-u9n',
+                  short_url: 'your-short-url',
                   onSuccess: function (data) {
                     // let response = {event: 'option success', data};
                     // window.ReactNativeWebView.postMessage(JSON.stringify(response));
